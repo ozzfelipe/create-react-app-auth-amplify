@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import Amplify, { Storage, Auth, DataStore } from "aws-amplify";
 import { CssBaseline, Container, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-const moment = require('moment')
+const moment = require("moment");
 
 const HomeScreen = (props) => {
   const classes = useStyles();
@@ -27,21 +27,21 @@ const HomeScreen = (props) => {
     console.log(result);
   };
 
-  const saveLog = () => {
-      const df = new Date();
+  const saveLog = async () => {
+    const df = new Date();
     try {
-        await DataStore.save(
-          new Log({
-            user: userInfo.attributes.email,
-            description: "novo arquivo adicionado",
-            dateTime: df.format(Date.now()) 
-          })
-        );
-        console.log("Post saved successfully!");
-      } catch (error) {
-        console.log("Error saving post", error);
-      }
-  }
+      await DataStore.save(
+        new Log({
+          user: userInfo.attributes.email,
+          description: "novo arquivo adicionado",
+          dateTime: df.format(Date.now()),
+        })
+      );
+      console.log("Post saved successfully!");
+    } catch (error) {
+      console.log("Error saving post", error);
+    }
+  };
 
   const uploadFileS3 = async (file) => {
     console.log("file uploaded", result);
