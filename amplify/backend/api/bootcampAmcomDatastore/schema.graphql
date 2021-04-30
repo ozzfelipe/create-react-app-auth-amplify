@@ -1,0 +1,6 @@
+type Log @model {
+  id: ID!
+  user: String!
+  description: String
+  dateTime: String
+}
