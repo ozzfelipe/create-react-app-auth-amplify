@@ -30,15 +30,17 @@ const HomeScreen = (props) => {
 
   const saveLog = async () => {
     console.log(userInfo.attributes.email);
+    const logToSave = new Log({
+      user: userInfo.attributes.email,
+      description: "novo arquivo adicionado",
+      dateTime: Date.now().toLocaleString("pt-BR"),
+    });
     try {
-      await DataStore.save(
-        new Log({
-          user: userInfo.attributes.email,
-          description: "novo arquivo adicionado",
-          dateTime: Date.now().toLocaleString("pt-BR"),
-        })
-      );
-      console.log("Post saved successfully!");
+      const start = await DataStore.start();
+      console.log("start", start);
+      const result = await DataStore.save(logToSave);
+      console.log("Post saved successfully!", logToSave);
+      console.log("Post result", result);
     } catch (error) {
       console.log("Error saving post", error);
     }
@@ -48,7 +50,7 @@ const HomeScreen = (props) => {
     const result = await Storage.put(file.name, file, { level: "private" });
     getS3Files();
     saveLog();
-    console.log("log wrote", result);
+    console.log("file uploaded", result);
   };
 
   const deleteFileS3 = async (file) => {
