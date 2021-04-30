@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import Amplify, { Storage, Auth, DataStore } from "aws-amplify";
 import { CssBaseline, Container, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Log } from "../../models/index";
 const moment = require("moment");
 
 const HomeScreen = (props) => {
@@ -24,17 +25,17 @@ const HomeScreen = (props) => {
   const getS3Files = async () => {
     const result = await Storage.list("", { level: "private" });
     setFiles(result);
-    console.log(result);
+    console.log("files:", result);
   };
 
   const saveLog = async () => {
-    const df = new Date();
+    console.log(userInfo.attributes.email);
     try {
       await DataStore.save(
         new Log({
           user: userInfo.attributes.email,
           description: "novo arquivo adicionado",
-          dateTime: df.format(Date.now()),
+          dateTime: Date.now().toLocaleString("pt-BR"),
         })
       );
       console.log("Post saved successfully!");
@@ -44,17 +45,16 @@ const HomeScreen = (props) => {
   };
 
   const uploadFileS3 = async (file) => {
-    console.log("file uploaded", result);
     const result = await Storage.put(file.name, file, { level: "private" });
     getS3Files();
-
-    console.log("file uploaded", result);
+    saveLog();
+    console.log("log wrote", result);
   };
 
   const deleteFileS3 = async (file) => {
     let result = [];
     files.forEach(async (value, index, list) => {
-      result.push(await Storage.remove(list[index].key));
+      result.push(await Storage.remove(list[index].key, { level: "private" }));
     });
     Promise.all(result).then((result) => {
       console.log("file deleted", result);
