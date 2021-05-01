@@ -1,36 +1,47 @@
 {
   "auth": {
-    "cognitocf0c6096": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation"
-    }
-  },
-  "function": {
-    "S3Trigger664a0e62": {
-      "service": "Lambda",
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
       "providerPlugin": "awscloudformation",
-      "build": true
-    }
-  },
-  "storage": {
-    "bootcampAmcomBucket01": {
-      "service": "S3",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "bootcampamcomapp326a610b326a610b",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
+    },
+    "bootcampamcomapp326a610b326a610b": {
+      "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "S3Trigger664a0e62",
+          "resourceName": "bootcampamcomapp326a610b326a610bPostConfirmation",
+          "triggerProvider": "Cognito",
           "attributes": [
-            "Name",
             "Arn",
-            "LambdaExecutionRole"
+            "Name"
           ]
         }
-      ]
+      ],
+      "customAuth": false
+    }
+  },
+  "function": {
+    "bootcampamcomapp326a610b326a610bPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "api": {
-    "bootcampAmcomDatastore": {
+    "bootcampamcomapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -38,7 +49,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authcognitocf0c6096"
+              "userPoolId": "authbootcampamcomapp326a610b326a610b"
             }
           },
           "additionalAuthenticationProviders": []

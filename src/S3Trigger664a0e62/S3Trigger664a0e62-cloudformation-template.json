@@ -60,7 +60,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-authcra-deve-22821-deployment",
-          "S3Key": "amplify-builds/S3Trigger664a0e62-78466154504f32414635-build.zip"
+          "S3Key": "amplify-builds/S3Trigger664a0e62-614a4b59594b734e4a4f-build.zip"
         }
       }
     },

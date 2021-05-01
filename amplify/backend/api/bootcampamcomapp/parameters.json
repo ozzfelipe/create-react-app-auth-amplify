@@ -1,10 +1,10 @@
 {
-    "AppSyncApiName": "bootcampAmcomDatastore",
+    "AppSyncApiName": "bootcampamcomapp",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": false,
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authcognitocf0c6096",
+            "authbootcampamcomapp326a610b326a610b",
             "Outputs.UserPoolId"
         ]
     }

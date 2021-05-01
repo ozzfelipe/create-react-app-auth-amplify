@@ -2,7 +2,6 @@
 
 const aws = require("aws-sdk");
 const ses = aws.SES;
-const cloudWatch = aws.CLOUDWATCH;
 const { NotificationService } = require("./services/NotificationService");
 
 exports.handler = function (event, context) {

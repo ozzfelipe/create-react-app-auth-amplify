@@ -1,9 +1,9 @@
 import React, { Component, useEffect, useState } from "react";
-import Amplify, { Storage, Auth, DataStore } from "aws-amplify";
+import Amplify, { Storage, Auth, DataStore, API } from "aws-amplify";
 import { CssBaseline, Container, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Log } from "../../models/index";
-const moment = require("moment");
+import * as mutations from "../../graphql/mutations";
 
 const HomeScreen = (props) => {
   const classes = useStyles();
@@ -36,9 +36,10 @@ const HomeScreen = (props) => {
       dateTime: Date.now().toLocaleString("pt-BR"),
     });
     try {
-      const start = await DataStore.start();
-      console.log("start", start);
-      const result = await DataStore.save(logToSave);
+      const result = await API.graphql({
+        query: mutations.createLog,
+        variables: { input: logToSave },
+      });
       console.log("Post saved successfully!", logToSave);
       console.log("Post result", result);
     } catch (error) {

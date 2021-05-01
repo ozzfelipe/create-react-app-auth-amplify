@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "bootcampamcomapp326a610b326a610b",
+  "functionName": "bootcampamcomapp326a610b326a610bPostConfirmation",
+  "resourceName": "bootcampamcomapp326a610b326a610bPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "roleName": "bootcampamcomapp326a610b326a610bPostConfirmation",
+  "skipEdit": true,
+  "enableCors": false
+}

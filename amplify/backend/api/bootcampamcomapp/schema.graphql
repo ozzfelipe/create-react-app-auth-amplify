@@ -1,0 +1,19 @@
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Users"] }
+      { allow: owner, ownerField: "username", operations: [read] }
+    ]
+  ) {
+  id: ID!
+  username: String!
+  email: String!
+}
+
+type Log @model {
+  id: ID!
+  user: String!
+  description: String
+  dateTime: String
+}

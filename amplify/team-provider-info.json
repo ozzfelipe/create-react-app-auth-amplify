@@ -1,19 +1,23 @@
 {
-  "deve": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-authcra-deve-22821-authRole",
-      "UnauthRoleArn": "arn:aws:iam::692899243498:role/amplify-authcra-deve-22821-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::692899243498:role/amplify-authcra-deve-22821-authRole",
+      "AuthRoleName": "amplify-bootcampamcomapp-dev-111019-authRole",
+      "UnauthRoleArn": "arn:aws:iam::692899243498:role/amplify-bootcampamcomapp-dev-111019-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::692899243498:role/amplify-bootcampamcomapp-dev-111019-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-authcra-deve-22821-deployment",
-      "UnauthRoleName": "amplify-authcra-deve-22821-unauthRole",
-      "StackName": "amplify-authcra-deve-22821",
-      "StackId": "arn:aws:cloudformation:us-east-1:692899243498:stack/amplify-authcra-deve-22821/91007530-a892-11eb-adcc-0ae6cf5d268f",
-      "AmplifyAppId": "d3e9i3v91liyhv"
+      "DeploymentBucketName": "amplify-bootcampamcomapp-dev-111019-deployment",
+      "UnauthRoleName": "amplify-bootcampamcomapp-dev-111019-unauthRole",
+      "StackName": "amplify-bootcampamcomapp-dev-111019",
+      "StackId": "arn:aws:cloudformation:us-east-1:692899243498:stack/amplify-bootcampamcomapp-dev-111019/f7d01180-aa86-11eb-87c5-12e26def3eab",
+      "AmplifyAppId": "dfpgxlmour8of"
     },
     "categories": {
+      "function": {
+        "bootcampamcomapp326a610b326a610bPostConfirmation": {}
+      },
       "auth": {
-        "cognitocf0c6096": {}
+        "bootcampamcomapp326a610b326a610b": {},
+        "userPoolGroups": {}
       }
     }
   }
