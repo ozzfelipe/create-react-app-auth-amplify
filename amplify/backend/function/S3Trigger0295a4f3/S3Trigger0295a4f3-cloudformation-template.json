@@ -2,39 +2,6 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "Lambda resource stack creation using Amplify CLI",
   "Parameters": {
-    "GROUP": {
-      "Type": "String",
-      "Default": ""
-    },
-    "modules": {
-      "Type": "String",
-      "Default": "",
-      "Description": "Comma-delimmited list of modules to be executed by a lambda trigger. Sent to resource as an env variable."
-    },
-    "resourceName": {
-      "Type": "String",
-      "Default": ""
-    },
-    "trigger": {
-      "Type": "String",
-      "Default": "true"
-    },
-    "functionName": {
-      "Type": "String",
-      "Default": ""
-    },
-    "roleName": {
-      "Type": "String",
-      "Default": ""
-    },
-    "parentResource": {
-      "Type": "String",
-      "Default": ""
-    },
-    "parentStack": {
-      "Type": "String",
-      "Default": ""
-    },
     "env": {
       "Type": "String"
     }
@@ -61,12 +28,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "bootcampamcomapp326a610b326a610bPostConfirmation",
+            "S3Trigger0295a4f3",
             {
               "Fn::Join": [
                 "",
                 [
-                  "bootcampamcomapp326a610b326a610bPostConfirmation",
+                  "S3Trigger0295a4f3",
                   "-",
                   {
                     "Ref": "env"
@@ -80,15 +47,6 @@
           "Variables": {
             "ENV": {
               "Ref": "env"
-            },
-            "MODULES": {
-              "Ref": "modules"
-            },
-            "REGION": {
-              "Ref": "AWS::Region"
-            },
-            "GROUP": {
-              "Ref": "GROUP"
             }
           }
         },
@@ -102,7 +60,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-bootcampamcomapp-dev-111019-deployment",
-          "S3Key": "amplify-builds/bootcampamcomapp326a610b326a610bPostConfirmation-6e33345141456a387574-build.zip"
+          "S3Key": "amplify-builds/S3Trigger0295a4f3-436e37367a4e6c4d4652-build.zip"
         }
       }
     },
@@ -112,12 +70,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "bootcampamcomapp326a610b326a610bPostConfirmation",
+            "S3Trigger0295a4f3LambdaRole0295a4f3",
             {
               "Fn::Join": [
                 "",
                 [
-                  "bootcampamcomapp326a610b326a610bPostConfirmation",
+                  "S3Trigger0295a4f3LambdaRole0295a4f3",
                   "-",
                   {
                     "Ref": "env"
@@ -183,31 +141,6 @@
                   }
                 ]
               }
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "SNS:CreateTopic",
-                "SNS:TagResource",
-                "SNS:Subscribe",
-                "SNS:DeleteTopic"
-              ],
-              "Resource": {
-                "Fn::Sub": [
-                  "*",
-                  {
-                    "region": {
-                      "Ref": "AWS::Region"
-                    },
-                    "account": {
-                      "Ref": "AWS::AccountId"
-                    },
-                    "lambda": {
-                      "Ref": "LambdaFunction"
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
@@ -228,14 +161,14 @@
         ]
       }
     },
-    "LambdaExecutionRole": {
-      "Value": {
-        "Ref": "LambdaExecutionRole"
-      }
-    },
     "Region": {
       "Value": {
         "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
       }
     }
   }

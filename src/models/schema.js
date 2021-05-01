@@ -23,6 +23,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
+                },
+                "snsTopicArn": {
+                    "name": "snsTopicArn",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -108,5 +115,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "a5b1dc7081736768ce5b866bfe46f1a0"
+    "version": "0b5bb84ddc55a4958515f8e396e9bf9d"
 };
