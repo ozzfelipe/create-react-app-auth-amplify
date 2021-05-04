@@ -7,6 +7,7 @@ export const onCreateUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -18,6 +19,7 @@ export const onUpdateUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -29,6 +31,7 @@ export const onDeleteUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -40,7 +43,6 @@ export const onCreateLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }
@@ -52,7 +54,6 @@ export const onUpdateLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }
@@ -64,7 +65,6 @@ export const onDeleteLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }

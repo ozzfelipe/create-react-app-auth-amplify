@@ -39,10 +39,20 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "S3Trigger0295a4f3": {
-      "service": "Lambda",
+    "sendMessage": {
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "build": true
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "bootcampamcomapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ]
     }
   },
   "api": {
@@ -65,18 +75,7 @@
   "storage": {
     "s3storage": {
       "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "S3Trigger0295a4f3",
-          "attributes": [
-            "Name",
-            "Arn",
-            "LambdaExecutionRole"
-          ]
-        }
-      ]
+      "providerPlugin": "awscloudformation"
     }
   }
 }

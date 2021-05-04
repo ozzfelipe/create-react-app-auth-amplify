@@ -1,6 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const publishMessage = /* GraphQL */ `
+  mutation PublishMessage($userEmail: String, $message: String) {
+    publishMessage(userEmail: $userEmail, message: $message)
+  }
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -10,6 +15,7 @@ export const createUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -24,6 +30,7 @@ export const updateUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -38,6 +45,7 @@ export const deleteUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -52,7 +60,6 @@ export const createLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }
@@ -67,7 +74,6 @@ export const updateLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }
@@ -82,7 +88,6 @@ export const deleteLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }

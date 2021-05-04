@@ -94,7 +94,7 @@ const ddbSaveUser = async (event, topicArn = "não recebeu") => {
 
   const params = {
     Item: {
-      id: { S: event.request.userAttributes.sub },
+      id: { S: event.request.userAttributes.email },
       __typename: { S: "User" },
       username: { S: event.userName },
       email: { S: event.request.userAttributes.email },

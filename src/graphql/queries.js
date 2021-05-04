@@ -7,6 +7,7 @@ export const getUser = /* GraphQL */ `
       id
       username
       email
+      snsTopicArn
       createdAt
       updatedAt
     }
@@ -23,6 +24,7 @@ export const listUsers = /* GraphQL */ `
         id
         username
         email
+        snsTopicArn
         createdAt
         updatedAt
       }
@@ -36,7 +38,6 @@ export const getLog = /* GraphQL */ `
       id
       user
       description
-      dateTime
       createdAt
       updatedAt
     }
@@ -53,7 +54,6 @@ export const listLogs = /* GraphQL */ `
         id
         user
         description
-        dateTime
         createdAt
         updatedAt
       }

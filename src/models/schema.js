@@ -94,13 +94,6 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
-                },
-                "dateTime": {
-                    "name": "dateTime",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -115,5 +108,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "0b5bb84ddc55a4958515f8e396e9bf9d"
+    "version": "194ebff45306a479bb396ac5afd03198"
 };

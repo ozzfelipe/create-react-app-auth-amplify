@@ -16,5 +16,9 @@ type Log @model {
   id: ID!
   user: String!
   description: String
-  dateTime: String
+}
+
+type Mutation {
+  publishMessage(userEmail: String, message: String): String
+    @function(name: "publishMessageFunc-${env}")
 }

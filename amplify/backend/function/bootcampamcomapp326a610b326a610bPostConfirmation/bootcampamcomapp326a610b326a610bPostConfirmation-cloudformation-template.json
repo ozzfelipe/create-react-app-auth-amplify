@@ -102,7 +102,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-bootcampamcomapp-dev-111019-deployment",
-          "S3Key": "amplify-builds/bootcampamcomapp326a610b326a610bPostConfirmation-6e33345141456a387574-build.zip"
+          "S3Key": "amplify-builds/bootcampamcomapp326a610b326a610bPostConfirmation-70634b396f614242704a-build.zip"
         }
       }
     },
