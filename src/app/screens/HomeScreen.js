@@ -11,8 +11,7 @@ import {
 import { Sync, CloudUpload } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import * as queries from "../../graphql/queries";
-import GridFiles from "./components/GridFiles";
-import CardItem from "./components/CardItem";
+import ListItems from "./components/CardItem";
 import LoggerService from "../services/logService";
 import StorageService from "../services/storageService";
 import NotificationService from "../services/notificationService";
@@ -39,7 +38,7 @@ const HomeScreen = (props) => {
 
   const [files, setFiles] = useState([]);
   const [userInfo, setUserInfo] = useState();
-  const [showLoading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getS3Files();
@@ -49,8 +48,6 @@ const HomeScreen = (props) => {
   const logService = new LoggerService();
   const storageService = new StorageService();
   const notificationService = new NotificationService();
-
-  console.log(userInfo);
 
   const getUserInfo = async () => {
     const user = await Auth.currentUserInfo();
@@ -75,7 +72,6 @@ const HomeScreen = (props) => {
       });
 
       createLogFile(result);
-      console.log("logs recovered", result);
     } catch (error) {
       console.log("Error recover logs", error);
     }
@@ -84,20 +80,19 @@ const HomeScreen = (props) => {
 
   const uploadFile = async (file) => {
     setLoading(true);
-    const result = storageService.uploadFileS3(file);
+    storageService.uploadFileS3(file);
     const message = `New file added - file name: ${file.name}`;
     logService.saveLog(userInfo.attributes.email, message);
     const messageResult = await notificationService.publicMessage(
       message,
       userInfo
     );
-    console.log("message result", messageResult);
+
     getS3Files();
     setLoading(false);
   };
 
   const handleFileSelected = (e) => {
-    console.log("files:", e.target.files);
     const { files } = e.target;
     if (files.length > 0) {
       uploadFile(files[0]);
@@ -106,7 +101,7 @@ const HomeScreen = (props) => {
 
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ flex: 1, width: "100%", backgroundColor: "red" }}>
+      <div style={{ flex: 1, width: "100%" }}>
         <input
           accept="/*"
           className={classes.input}
@@ -117,17 +112,19 @@ const HomeScreen = (props) => {
 
         <Container
           style={{
-            display: "grid",
+            display: "inline-block",
             height: 300,
             width: "70%",
             minWidth: 300,
             backgroundColor: "#fff",
             flex: 1,
+            borderRadius: 10,
             alignItems: "center",
             justifyItems: "center",
+            overflowY: "scroll",
           }}
         >
-          {true && (
+          {files.length === 0 && !loading && (
             <Typography
               style={{
                 color: "#000",
@@ -137,6 +134,14 @@ const HomeScreen = (props) => {
             >
               No files stored
             </Typography>
+          )}
+          {files.length > 0 && (
+            <ListItems
+              data={files}
+              userInfo={userInfo}
+              refreashList={getS3Files}
+              setLoading={setLoading}
+            />
           )}
         </Container>
 
@@ -162,18 +167,20 @@ const HomeScreen = (props) => {
             Reload
           </Button>
         </Container>
+        <Container>
+          <Button
+            onClick={recoverLogs}
+            style={{ margin: 10, alignSelf: "center" }}
+            startIcon
+            variant="contained"
+            color="primary"
+            component="span"
+          >
+            Recover interactions
+          </Button>
+        </Container>
       </div>
-      <Button
-        onClick={recoverLogs}
-        style={{ margin: 10, alignSelf: "flex-end" }}
-        startIcon
-        variant="contained"
-        color="primary"
-        component="span"
-      >
-        Recover interactions
-      </Button>
-      <Backdrop className={classes.backdrop} open={showLoading}>
+      <Backdrop className={classes.backdrop} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>

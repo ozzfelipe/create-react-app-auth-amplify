@@ -89,7 +89,7 @@ const deleteTopic = async (topicArn) => {
     .promise();
 };
 
-const ddbSaveUser = async (event, topicArn = "não recebeu") => {
+const ddbSaveUser = async (event, topicArn) => {
   let date = new Date();
 
   const params = {

@@ -4,7 +4,6 @@ import { Log } from "../../models/index";
 
 class LoggerService {
   saveLog = async (email, message) => {
-    console.log(email);
     const logToSave = new Log({
       user: email,
       description: message,
@@ -14,8 +13,6 @@ class LoggerService {
         query: mutations.createLog,
         variables: { input: logToSave },
       });
-      console.log("Post saved successfully!", logToSave);
-      console.log("Post result", result);
       return "SUCCESS";
     } catch (error) {
       console.log("Error saving post", error);
